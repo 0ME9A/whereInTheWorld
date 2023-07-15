@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "whereInTheWorld",
-    "slug": "whereInTheWorld",
+    "name": "discover_earth",
+    "slug": "discover_earth",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -9,7 +9,7 @@
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
+      "contentFit": "contain",
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
