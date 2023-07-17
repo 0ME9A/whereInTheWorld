@@ -1,25 +1,20 @@
+import { StyleSheet, TouchableNativeFeedback } from "react-native";
+import { BlackWhite } from "../../constants/Colors";
+import { useContext } from "react";
+import { View } from "../Themed";
 import {
   Feather,
   FontAwesome,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import {
-  StyleSheet,
-  TouchableNativeFeedback,
-  useColorScheme,
-} from "react-native";
-import { View } from "../Themed";
-import { useContext } from "react";
+
 import TheContext from "../../app/Context/TheContext";
-import Colors from "../../constants/Colors";
-import FilterBox from "./../FilterBox";
 
 export default function HeaderRightHome({
   headerType,
 }: {
   headerType: "B" | "U";
 }) {
-  const ColorScheme = useColorScheme();
   const {
     filterQuery,
     isSearch,
@@ -27,7 +22,6 @@ export default function HeaderRightHome({
     setFilter,
     isFilter,
     filterQueryB,
-    isQueryB,
   } = useContext(TheContext);
 
   const handleFilter = () => {
@@ -40,6 +34,8 @@ export default function HeaderRightHome({
     setSearch(!isSearch);
   };
 
+  const BW = BlackWhite(true);
+
   return (
     <View style={styles.iconsContainer}>
       <View style={styles.iconBox}>
@@ -48,11 +44,7 @@ export default function HeaderRightHome({
             {isSearch ? (
               <FontAwesome name="close" size={24} color="red" />
             ) : (
-              <Feather
-                name="search"
-                size={24}
-                color={Colors[ColorScheme ?? "light"].text}
-              />
+              <Feather name="search" size={24} color={BW} />
             )}
           </View>
         </TouchableNativeFeedback>
@@ -63,7 +55,7 @@ export default function HeaderRightHome({
           {headerType === "B" ? (
             <View style={styles.iconView}>
               {filterQueryB === "All" ? (
-                <MaterialCommunityIcons name="filter" size={24} color="black" />
+                <MaterialCommunityIcons name="filter" size={24} color={BW} />
               ) : (
                 <MaterialCommunityIcons
                   name="filter-remove"
@@ -75,7 +67,7 @@ export default function HeaderRightHome({
           ) : (
             <View style={styles.iconView}>
               {filterQuery === "All" ? (
-                <MaterialCommunityIcons name="filter" size={24} color="black" />
+                <MaterialCommunityIcons name="filter" size={24} color={BW} />
               ) : (
                 <MaterialCommunityIcons
                   name="filter-remove"
@@ -96,16 +88,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginRight: 10,
+    backgroundColor: "transparent",
   },
   iconBox: {
     borderRadius: 10,
     overflow: "hidden",
+    backgroundColor: "transparent",
   },
   iconView: {
     padding: 10,
     aspectRatio: 1 / 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "transparent",
   },
   divider: {
     width: 2,

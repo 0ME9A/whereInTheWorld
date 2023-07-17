@@ -2,6 +2,7 @@ import * as SQLite from "expo-sqlite";
 
 import { TouchableNativeFeedback, StyleSheet } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
+import { BlackWhite } from "../../constants/Colors";
 import { useState, useCallback } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { View } from "../Themed";
@@ -10,6 +11,7 @@ const db = SQLite.openDatabase("myDatabase.db");
 
 export default function HeaderRightDetail({ id }: { id: string }) {
   const [BookMarks, setBookMarks] = useState(false);
+  const BW = BlackWhite(true);
 
   const fetchBookmarks = () => {
     // Check if the record exists
@@ -58,9 +60,9 @@ export default function HeaderRightDetail({ id }: { id: string }) {
         <TouchableNativeFeedback onPress={handlePress}>
           <View style={styles.iconView}>
             {BookMarks ? (
-              <Ionicons name="ios-bookmarks" size={24} color="black" />
+              <Ionicons name="ios-bookmarks" size={24} color={BW} />
             ) : (
-              <Ionicons name="ios-bookmarks-outline" size={24} color="black" />
+              <Ionicons name="ios-bookmarks-outline" size={24} color={BW} />
             )}
           </View>
         </TouchableNativeFeedback>
@@ -74,16 +76,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginRight: 10,
+    backgroundColor: "transparent",
   },
   iconBox: {
     borderRadius: 10,
     overflow: "hidden",
+    backgroundColor: "transparent",
   },
   iconView: {
     padding: 10,
     aspectRatio: 1 / 1,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "transparent",
   },
   divider: {
     width: 2,

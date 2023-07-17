@@ -1,6 +1,7 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { SplashScreen, Stack } from "expo-router";
 import { useColorScheme } from "react-native";
+import { createTable } from "./DB/database";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import {
@@ -10,7 +11,6 @@ import {
 } from "@react-navigation/native";
 
 import ContextWrapper from "./Context/ContextWrapper";
-import { createTable } from "./DB/database";
 
 export {
   // Catch any errors thrown by the Layout component.

@@ -1,5 +1,6 @@
-import { View, Text, StyleSheet, ScrollView, Linking } from "react-native";
+import { StyleSheet, ScrollView, Linking } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { Text, View } from "../../../components/Themed";
 
 const TermsOfService = () => {
   const handleOpenEmail = async () => {
@@ -72,7 +73,7 @@ const TermsOfService = () => {
           <Text style={styles.link}>heyome9a@gmail.com</Text>
         </TouchableOpacity>
       </Text>
-      <View style={{ padding: 50 }} />
+      <View style={{ padding: 50, backgroundColor: "transparent" }} />
     </ScrollView>
   );
 };

@@ -2,8 +2,9 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RectButton } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableNativeFeedback } from "react-native";
-import { View, Text, StyleSheet } from "react-native";
 import { CountryType } from "../Types/CountryType";
+import { StyleSheet } from "react-native";
+import { Text, View } from "./Themed";
 
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
@@ -48,19 +49,12 @@ export default function BookMarkCountryCard({
         onSwipeableOpen={() => onUnbookmark(countryInfo)}
       >
         <TouchableNativeFeedback onPress={handleRoute}>
-          <View
-            style={[
-              styles.cardBox,
-              {
-                backgroundColor: color,
-              },
-            ]}
-          >
-            <View style={{ padding: 10 }}>
+          <View style={styles.cardBox}>
+            <View style={{ padding: 10, backgroundColor: color }}>
               <Text style={{ fontSize: 18, fontWeight: "bold" }}>
                 {countryInfo.name.common}
               </Text>
-              <View>
+              <View style={{ backgroundColor: "transparent" }}>
                 <Text style={styles.subTitle}>
                   Region : {countryInfo.region}
                 </Text>

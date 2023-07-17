@@ -54,7 +54,9 @@ export default function OpenEmailButton({
               )}
             </View>
           </View>
-          <View style={{ opacity: 0.8 }}>{icon2}</View>
+          <View style={{ opacity: 0.8, backgroundColor: "transparent" }}>
+            {icon2}
+          </View>
         </View>
       </TouchableNativeFeedback>
     </View>

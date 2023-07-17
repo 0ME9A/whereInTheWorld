@@ -22,11 +22,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.dady_omni.discover_earth"
     },
     "web": {
       "bundler": "metro",
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5e717362-698b-4966-99f9-d9ec1983aaf7"
+      }
     }
   }
 }

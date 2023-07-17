@@ -1,7 +1,8 @@
-import { View, Text, StyleSheet, TouchableNativeFeedback } from "react-native";
+import { StyleSheet, TouchableNativeFeedback } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "@react-navigation/native";
 import { CountryType } from "../Types/CountryType";
+import { Text, View } from "./Themed";
 import { Image } from "expo-image";
 
 type RootStackParamList = {
@@ -27,13 +28,15 @@ export default function CountryCard({
   };
 
   return (
-    <View style={{ borderRadius: 10, overflow: "hidden" }}>
+    <View
+      style={{ borderRadius: 10, overflow: "hidden", backgroundColor: color }}
+    >
       <TouchableNativeFeedback onPress={handleRoute}>
         <View
           style={[
             styles.cardBox,
             {
-              backgroundColor: color,
+              backgroundColor: "transparent",
             },
           ]}
         >
@@ -42,11 +45,11 @@ export default function CountryCard({
             style={styles.cardThumb}
             contentFit="cover"
           />
-          <View style={{ padding: 10, marginTop: 10 }}>
+          <View style={styles.textContainer}>
             <Text style={{ fontSize: 22, fontWeight: "bold" }}>
               {countryInfo.name.common}
             </Text>
-            <View style={{ marginTop: 10 }}>
+            <View style={{ marginTop: 10, backgroundColor: "transparent" }}>
               <Text style={styles.subTitle}>
                 Population : {countryInfo.population}
               </Text>
@@ -74,5 +77,10 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 18,
     opacity: 0.6,
+  },
+  textContainer: {
+    padding: 10,
+    paddingVertical: 20,
+    backgroundColor: "transparent",
   },
 });

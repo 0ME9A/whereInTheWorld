@@ -1,12 +1,13 @@
 import { useContext, useState, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { CountryType } from "../../Types/CountryType";
-import { blurhash } from "../../constants/BlurHash";
+import { View, Text } from "../../../components/Themed";
+import { CountryType } from "../../../Types/CountryType";
+import { blurhash } from "../../../constants/BlurHash";
+import { StyleSheet } from "react-native";
 import { Image } from "expo-image";
 
-import LoadingScreen from "../../components/Loading";
-import TheContext from "../Context/TheContext";
-import Border from "../../components/Border";
+import LoadingScreen from "../../../components/Loading";
+import TheContext from "../../Context/TheContext";
+import Border from "../../../components/Border";
 
 export default function CountryInfo({ route }: any) {
   const [CD, setCD] = useState<CountryType | null>(null);

@@ -1,5 +1,6 @@
-import { View, Text, StyleSheet, ScrollView, Linking } from "react-native";
+import { StyleSheet, ScrollView, Linking } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { View, Text } from "../../../components/Themed";
 import { Link } from "expo-router";
 
 export default function PrivacyPolicy() {
@@ -95,6 +96,7 @@ const styles = StyleSheet.create({
     // marginBottom: 24,
     paddingVertical: 10,
     paddingBottom: 20,
+    backgroundColor: "transparent"
   },
   title: {
     fontSize: 24,
