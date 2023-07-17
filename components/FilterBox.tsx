@@ -1,16 +1,19 @@
-import { tintColorDark, tintColorLight } from "../constants/Colors";
 import { useContext, useEffect, useRef } from "react";
-import { View } from "./Themed";
+import { filterType } from "../Types/FilterType";
+import { View, Text } from "./Themed";
+import Colors, {
+  tintColorLight,
+  ColorSwitch,
+  BlackWhite,
+} from "../constants/Colors";
 import {
+  TouchableOpacity,
+  useColorScheme,
   StyleSheet,
   Animated,
-  TouchableOpacity,
-  Text,
-  useColorScheme,
 } from "react-native";
 
 import TheContext from "../app/Context/TheContext";
-import { filterType } from "../Types/FilterType";
 
 const filters: filterType[] = [
   "All",
@@ -32,7 +35,6 @@ export default function FilterBox({ filterType }: { filterType: "B" | "U" }) {
     filterQueryB,
   } = useContext(TheContext);
   const animation = useRef(new Animated.Value(0)).current;
-  const ColorScheme = useColorScheme();
 
   useEffect(() => {
     Animated.timing(animation, {
@@ -53,30 +55,28 @@ export default function FilterBox({ filterType }: { filterType: "B" | "U" }) {
     if (filterType === "U") setFilterQuery(filterItem);
   };
 
+  const CS = ColorSwitch(Colors.dark.tint, "white");
+  const CS2 = ColorSwitch(Colors.dark.background, tintColorLight);
+
   return (
     <Animated.View
       style={[
         styles.container,
         {
           transform: [{ translateY }],
-          backgroundColor: ColorScheme === "light" ? "white" : "black",
+          backgroundColor: CS,
         },
       ]}
     >
       {filterType === "B" && (
-        <View style={styles.filterContainer}>
+        <View style={[styles.filterContainer, { backgroundColor: CS }]}>
           {filters.map((filter) => (
             <TouchableOpacity
               key={filter}
               style={[
                 styles.filter,
                 {
-                  backgroundColor:
-                    filter === filterQueryB
-                      ? ColorScheme === "light"
-                        ? tintColorLight
-                        : tintColorDark
-                      : "white",
+                  backgroundColor: filter === filterQueryB ? CS2 : CS,
                 },
               ]}
               onPress={() => handleFilter(filter)}
@@ -87,19 +87,14 @@ export default function FilterBox({ filterType }: { filterType: "B" | "U" }) {
         </View>
       )}
       {filterType === "U" && (
-        <View style={styles.filterContainer}>
+        <View style={[styles.filterContainer, { backgroundColor: CS }]}>
           {filters.map((filter) => (
             <TouchableOpacity
               key={filter}
               style={[
                 styles.filter,
                 {
-                  backgroundColor:
-                    filter === filterQuery
-                      ? ColorScheme === "light"
-                        ? tintColorLight
-                        : tintColorDark
-                      : "white",
+                  backgroundColor: filter === filterQuery ? CS2 : CS,
                 },
               ]}
               onPress={() => handleFilter(filter)}

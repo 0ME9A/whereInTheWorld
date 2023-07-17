@@ -1,6 +1,8 @@
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import Colors, { ColorSwitch, tintColorLight } from "../constants/Colors";
 import { StackNavigationProp } from "@react-navigation/stack";
+import { TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Text } from "./Themed";
 
 import countriesWithCode from "../assets/Data/countriesData";
 
@@ -19,6 +21,7 @@ export default function Border({
   countryCode3: string | false;
 }) {
   const navigation = useNavigation<CountryCardScreenNavigationProp>();
+  const CS = ColorSwitch(Colors.dark.tint, tintColorLight);
   const cca3 = countryCode3;
 
   const borderFullName =
@@ -31,7 +34,7 @@ export default function Border({
   if (!countryCode3 || !borderFullName) {
     return (
       <TouchableOpacity onPress={handlePress}>
-        <Text style={styles.border}>No Borders</Text>
+        <Text style={[styles.border, { backgroundColor: CS }]}>No Borders</Text>
       </TouchableOpacity>
     );
   }
@@ -39,7 +42,9 @@ export default function Border({
   if (borderFullName.length > 0) {
     return (
       <TouchableOpacity onPress={handlePress}>
-        <Text style={styles.border}>{borderFullName[0].name}</Text>
+        <Text style={[styles.border, { backgroundColor: CS }]}>
+          {borderFullName[0].name}
+        </Text>
       </TouchableOpacity>
     );
   }
@@ -50,7 +55,6 @@ const styles = StyleSheet.create({
   border: {
     padding: 5,
     paddingHorizontal: 15,
-    backgroundColor: "white",
     borderRadius: 5,
   },
 });

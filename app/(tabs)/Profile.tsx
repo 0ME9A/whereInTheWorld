@@ -1,18 +1,16 @@
 import { LinearGradient } from "expo-linear-gradient";
+import { StyleSheet, ScrollView } from "react-native";
 import { Text, View } from "../../components/Themed";
-import {
-  StyleSheet,
-  useColorScheme,
-  ScrollView,
-} from "react-native";
 import Colors, {
   tintColorLightDark,
+  ColorSwitch,
+  BlackWhite,
 } from "../../constants/Colors";
 import {
-  EvilIcons,
-  FontAwesome,
-  Ionicons,
   MaterialIcons,
+  FontAwesome,
+  EvilIcons,
+  Ionicons,
   Octicons,
 } from "@expo/vector-icons";
 
@@ -20,9 +18,11 @@ import OpenEmailButton from "../../components/Buttons/OpenEmailButton";
 import Button from "../../components/Buttons/Button";
 
 export default function Profile() {
-  const ColorScheme = useColorScheme();
+  const CS = ColorSwitch(Colors.dark.background, Colors.light.background);
+  const BW = BlackWhite(true);
+
   const externalLinkIcon = (
-    <EvilIcons name="external-link" size={24} color="black" />
+    <EvilIcons name="external-link" size={24} color={BW} />
   );
 
   return (
@@ -30,14 +30,11 @@ export default function Profile() {
       style={[
         styles.container,
         {
-          backgroundColor:
-            ColorScheme === "dark"
-              ? Colors.dark.background
-              : Colors.light.background,
+          backgroundColor: CS,
         },
       ]}
     >
-      <LinearGradient colors={[tintColorLightDark, "white"]}>
+      <LinearGradient colors={[tintColorLightDark, CS]}>
         <View
           style={[styles.profileContainer, { backgroundColor: "transparent" }]}
         >
@@ -55,7 +52,7 @@ export default function Profile() {
               borderColor: "maroon",
             }}
           >
-            <FontAwesome name="user" size={48} color="black" />
+            <FontAwesome name="user" size={48} color={BW} />
           </View>
 
           <Text style={{ fontSize: 20, marginTop: 5, fontWeight: "500" }}>
@@ -74,21 +71,21 @@ export default function Profile() {
       <Button
         title={"GitHub"}
         subTitle="Star us on GitHub"
-        icon1={<FontAwesome name="github" size={24} color="black" />}
+        icon1={<FontAwesome name="github" size={24} color={BW} />}
         icon2={externalLinkIcon}
         webLink="https://github.com/0ME9A/discover_earth"
       />
       <Button
         title={"Send Feedback"}
         subTitle="Report a bug or request for new features"
-        icon1={<MaterialIcons name="feedback" size={24} color="black" />}
+        icon1={<MaterialIcons name="feedback" size={24} color={BW} />}
         icon2={externalLinkIcon}
         webLink="https://github.com/0ME9A/discover_earth/issues"
       />
       <Button
         title={"Version"}
         subTitle="00.00.01"
-        icon1={<Octicons name="versions" size={24} color="black" />}
+        icon1={<Octicons name="versions" size={24} color={BW} />}
       />
       <Text style={{ fontWeight: "500", padding: 10, paddingBottom: 5 }}>
         Contact Us
@@ -96,7 +93,7 @@ export default function Profile() {
       <OpenEmailButton
         title={"Contact us"}
         subTitle="heyome9a@gmail.com"
-        icon1={<Ionicons name="mail" size={24} color="black" />}
+        icon1={<Ionicons name="mail" size={24} color={BW} />}
         icon2={externalLinkIcon}
         mail="https://heyome9a@gmail.com"
       />
@@ -107,18 +104,14 @@ export default function Profile() {
       <Button
         title={"Privacy Policy"}
         subTitle="Important for both of us"
-        icon1={<MaterialIcons name="security" size={24} color="black" />}
+        icon1={<MaterialIcons name="security" size={24} color={BW} />}
         self="PrivacyPolicy"
       />
       <Button
         title={"Term of service"}
         subTitle="All the stuff you need to know"
         icon1={
-          <MaterialIcons
-            name="miscellaneous-services"
-            size={24}
-            color="black"
-          />
+          <MaterialIcons name="miscellaneous-services" size={24} color={BW} />
         }
         self="TermsOfService"
       />

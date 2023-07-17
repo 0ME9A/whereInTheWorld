@@ -1,15 +1,20 @@
-import { tintColorDark, tintColorLight } from "../constants/Colors";
 import { useState, useEffect, useContext } from "react";
 import { FilterCountries } from "./../functions/index";
 import { CountryType } from "../Types/CountryType";
 import { Text, View } from "./Themed";
+import Colors, {
+  tintColorLight,
+  tintColorDark,
+  ColorSwitch,
+  BlackWhite,
+} from "../constants/Colors";
 import {
+  TouchableNativeFeedback,
   RefreshControl,
   useColorScheme,
   StyleSheet,
   FlatList,
   Alert,
-  TouchableNativeFeedback,
 } from "react-native";
 
 import TheContext from "../app/Context/TheContext";
@@ -70,6 +75,10 @@ export default function CountriesList() {
     setFilteredData(filterCountries);
   }, [isQuery, filterQuery, allCountries]);
 
+  const BW = BlackWhite(true);
+  const CS = ColorSwitch(Colors.dark.background, "#fff");
+  const CSCard = ColorSwitch(tintColorDark, tintColorLight);
+
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
@@ -121,8 +130,12 @@ export default function CountriesList() {
           data={filteredData}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
-            <View style={{ padding: 10 }}>
-              <CountryCard countryInfo={item} color={cardColor} />
+            <View
+              style={{
+                padding: 10,
+              }}
+            >
+              <CountryCard countryInfo={item} color={CSCard} />
             </View>
           )}
           refreshControl={

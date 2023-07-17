@@ -1,11 +1,16 @@
 import * as SQLite from "expo-sqlite";
 
-import { useColorScheme, View, FlatList, StyleSheet } from "react-native";
-import { tintColorLight, tintColorDark } from "../../constants/Colors";
 import { useState, useContext, useEffect, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import { CountryType } from "../../Types/CountryType";
+import { FlatList, StyleSheet } from "react-native";
 import { FilterCountries } from "../../functions";
+import { View } from "../../components/Themed";
+import {
+  tintColorLight,
+  tintColorDark,
+  ColorSwitch,
+} from "../../constants/Colors";
 
 import BookMarkCountryCard from "../../components/BookMarkCountryCard";
 import ActiveFilterTab from "../../components/ActiveFilterTab";
@@ -24,8 +29,7 @@ export default function BookMarks() {
 
   const { allCountries, filterQueryB, isQueryB } = useContext(TheContext);
 
-  const ColorScheme = useColorScheme();
-  const cardColor = ColorScheme === "light" ? tintColorLight : tintColorDark;
+  const CS = ColorSwitch(tintColorDark, tintColorLight);
 
   const fetchBookmarks = () => {
     setIsLoading(true);
@@ -83,7 +87,7 @@ export default function BookMarks() {
     <View
       style={[
         styles.container,
-        { backgroundColor: ColorScheme === "light" ? "#fff" : "#000" },
+        // { backgroundColor: ColorScheme === "light" ? "#fff" : "#000" },
       ]}
     >
       <SearchBox searchType={"B"} />
@@ -108,7 +112,7 @@ export default function BookMarks() {
             <View style={{ padding: 10, paddingVertical: 5 }}>
               <BookMarkCountryCard
                 countryInfo={item}
-                color={cardColor}
+                color={CS}
                 onUnbookmark={() => handleUnbookmark(item)}
               />
             </View>

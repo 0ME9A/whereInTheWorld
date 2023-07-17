@@ -1,13 +1,12 @@
-import { tintColorLightDark } from "../constants/Colors";
+import { TouchableOpacity, ScrollView, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Text, View } from "./Themed";
 import { useContext } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  StyleSheet,
-} from "react-native";
+import Colors, {
+  BlackWhite,
+  ColorSwitch,
+  tintColorLightDark,
+} from "../constants/Colors";
 
 import TheContext from "../app/Context/TheContext";
 
@@ -29,8 +28,17 @@ export default function ActiveFilterTab({
     setFilterQueryB,
   } = useContext(TheContext);
 
+  const BW = BlackWhite(true);
+  const CS = ColorSwitch(Colors.dark.background, "#fff");
+
   return (
-    <View style={{ flexDirection: "row", alignItems: "center" }}>
+    <View
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        backgroundColor: CS,
+      }}
+    >
       <View
         style={[
           styles.tab,
@@ -40,7 +48,9 @@ export default function ActiveFilterTab({
           },
         ]}
       >
-        <Text style={{ fontWeight: "bold" }}>{total}</Text>
+        <Text style={{ fontWeight: "bold", color: BW, paddingLeft: 10 }}>
+          {total}
+        </Text>
         <View style={styles.divider} />
       </View>
 
@@ -58,7 +68,7 @@ export default function ActiveFilterTab({
                 style={[
                   styles.tab,
                   {
-                    borderColor: filterQueryB !== "All" ? "red" : "#000",
+                    borderColor: filterQueryB !== "All" ? "red" : BW,
                   },
                 ]}
               >
@@ -78,7 +88,7 @@ export default function ActiveFilterTab({
                 style={[
                   styles.tab,
                   {
-                    borderColor: filterQuery !== "All" ? "red" : "#000",
+                    borderColor: filterQuery !== "All" ? "red" : BW,
                   },
                 ]}
               >
